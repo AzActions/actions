@@ -1,0 +1,49 @@
+# AzActions - Trying to make things easier
+
+We have decided to create custom actions that provide a simpler approach by default, while keeping the flexibility of advanced scenarios through use of inputs.
+For details on why we chose to create a custom action, please review the action documentation. Each of them have a "Why use this module?" segment in their readme.
+
+| Action name (link to doc)                                         | Description                   | Status                                                                                                                                                                             | Latest version                                                                                                                                                                                                                                                | Last update                                                                                                     | Size                                                                                         | Issues                                                                                                                                                                                                                                                                   |
+| :---------------------------------------------------------------- | :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [AzActions/Variables](https://github.com/AzActions/Variables)     | Manage workflow variables     | [![Action-Test](https://github.com/AzActions/Variables/actions/workflows/Action-Test.yml/badge.svg)](https://github.com/AzActions/Variables/actions/workflows/Action-Test.yml)     | ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/AzActions/Variables?label=Stable) ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/AzActions/Variables?color=orange&include_prereleases&label=Pre-release)     | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzActions/Variables/main?label=main)   | ![GitHub repo size](https://img.shields.io/github/repo-size/AzActions/Variables?label=%20)   | [![GitHub issues](https://img.shields.io/github/issues/AzActions/Variables)](https://github.com/AzActions/Variables/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/AzActions/Variables)](https://github.com/AzActions/Variables/pulls)         |
+| [AzActions/AzConnect](https://github.com/AzActions/AzConnect)     | Connect to Azure              | [![Action-Test](https://github.com/AzActions/AzConnect/actions/workflows/Action-Test.yml/badge.svg)](https://github.com/AzActions/AzConnect/actions/workflows/Action-Test.yml)     | ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/AzActions/AzConnect?label=Stable) ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/AzActions/AzConnect?color=orange&include_prereleases&label=Pre-release)     | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzActions/AzConnect/main?label=main)   | ![GitHub repo size](https://img.shields.io/github/repo-size/AzActions/AzConnect?label=%20)   | [![GitHub issues](https://img.shields.io/github/issues/AzActions/AzConnect)](https://github.com/AzActions/AzConnect/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/AzActions/AzConnect)](https://github.com/AzActions/AzConnect/pulls)         |
+| [AzActions/AzGather](https://github.com/AzActions/AzGather)       | Gather Azure environment info | [![Action-Test](https://github.com/AzActions/AzGather/actions/workflows/Action-Test.yml/badge.svg)](https://github.com/AzActions/AzGather/actions/workflows/Action-Test.yml)       | ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/AzActions/AzGather?label=Stable) ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/AzActions/AzGather?color=orange&include_prereleases&label=Pre-release)       | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzActions/AzGather/main?label=main)    | ![GitHub repo size](https://img.shields.io/github/repo-size/AzActions/AzGather?label=%20)    | [![GitHub issues](https://img.shields.io/github/issues/AzActions/AzGather)](https://github.com/AzActions/AzGather/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/AzActions/AzGather)](https://github.com/AzActions/AzGather/pulls)             |
+| [AzActions/AzModules](https://github.com/AzActions/AzModules)     | Deploy resources to Azure     | [![Action-Test](https://github.com/AzActions/AzModules/actions/workflows/Action-Test.yml/badge.svg)](https://github.com/AzActions/AzModules/actions/workflows/Action-Test.yml)     | ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/AzActions/AzModules?label=Stable) ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/AzActions/AzModules?color=orange&include_prereleases&label=Pre-release)     | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzActions/AzModules/main?label=main)   | ![GitHub repo size](https://img.shields.io/github/repo-size/AzActions/AzModules?label=%20)   | [![GitHub issues](https://img.shields.io/github/issues/AzActions/AzModules)](https://github.com/AzActions/AzModules/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/AzActions/AzModules)](https://github.com/AzActions/AzModules/pulls)         |
+| [AzActions/AzUtilities](https://github.com/AzActions/AzUtilities) | Installs utilities on runner  | [![Action-Test](https://github.com/AzActions/AzUtilities/actions/workflows/Action-Test.yml/badge.svg)](https://github.com/AzActions/AzUtilities/actions/workflows/Action-Test.yml) | ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/AzActions/AzUtilities?label=Stable) ![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/AzActions/AzUtilities?color=orange&include_prereleases&label=Pre-release) | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/AzActions/AzUtilities/main?label=main) | ![GitHub repo size](https://img.shields.io/github/repo-size/AzActions/AzUtilities?label=%20) | [![GitHub issues](https://img.shields.io/github/issues/AzActions/AzUtilities)](https://github.com/AzActions/AzUtilities/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/AzActions/AzUtilities)](https://github.com/AzActions/AzUtilities/pulls) |
+
+## Input handling
+
+Most of our actions will start with loading environment variables, named the same as the different action inputs. This can be seen as setting the default values
+for the actions within a workflow, reducing the need of repeating them throughout the workflow. After environment variables are loaded, the inputs are gathered
+and merged with the inputs overriding the defaults from environment variables. If default values are provided in the inputs section of the action definition,
+this will also override the gathered environment variables.
+
+> Note!
+>
+> This override mechanism will only be used for a specific call of the action, and will not store the overridden value back to the corresponding environment variable.
+
+Used together with [AzActions/Variables](https://github.com/AzActions/Variables) and a variables file which can be stored as code and loaded,we try to reduce
+the duplication specifying inputs.
+
+## Repo automation
+
+To automate setup of our action we use:
+
+| App name                                                          | Configuration                  | Description                                                                                           |
+| :---------------------------------------------------------------- | :----------------------------- | :---------------------------------------------------------------------------------------------------- |
+| [Release Drafter](https://probot.github.io/apps/release-drafter/) | `.github/release-drafter.yml`  | Drafts your next release notes as pull requests are merged.                                           |
+| [Work In Progress](https://probot.github.io/apps/wip/)            | Use 'WIP or 'wip' in PR title. | Prevent merging of Pull Requests with "WIP" in the title                                              |
+| [Request Info](https://probot.github.io/apps/request-info/)       | `.github/config.yml`           | Automatically requests more info on issues and pull requests with the default title or an empty body. |
+| [Settings](https://probot.github.io/apps/settings/)               | `.github/settings.yml`         | Repo configuration as code.                                                                           |
+
+## How to contribute
+
+Coming soon.
+
+## Code of Conduct
+
+Coming soon.
+
+## Code quality and guidelines
+
+Coming soon.
